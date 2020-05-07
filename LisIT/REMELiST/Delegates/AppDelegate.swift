@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  LisIT
+//  REMELiST
 //
 //  Created by Zach Eriksen on 4/25/20.
 //  Copyright © 2020 oneleif. All rights reserved.

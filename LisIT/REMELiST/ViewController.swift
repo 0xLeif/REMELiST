@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  LisIT
+//  REMELiST
 //
 //  Created by Zach Eriksen on 4/25/20.
 //  Copyright © 2020 oneleif. All rights reserved.
@@ -81,30 +81,8 @@ class ViewController: UIViewController {
         table.register(cells: [ListItemCell.self])
         
         view.embed {
-            SafeAreaView {
-                ZStack {
-                    [
-                    Image(E.abacus.image(ofSize: 256, withFontSize: 256)!)
-                    ]
-                }
-//            table
-//            Table(defaultCellHeight: 120) {
-//                E.allCases.map { emoji in
-//                    VStack {
-//                        [
-//                            Label("\(emoji)").text(alignment: .center),
-////                            Label.title1(emoji.rawValue).text(alignment: .center).font(.systemFont(ofSize: 64)),
-////                            Image(E.abacus.)
-//                            emoji.image!.frame(height: 40)
-//                        ]
-//                    }
-//                }
-//
-//            }
-            }
-        }.debug()
-        
-        
+            table
+        }
     }
 }
 

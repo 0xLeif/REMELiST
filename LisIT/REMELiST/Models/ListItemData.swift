@@ -1,6 +1,6 @@
 //
 //  ListItemData.swift
-//  LisIT
+//  REMELiST
 //
 //  Created by Zach Eriksen on 5/1/20.
 //  Copyright © 2020 oneleif. All rights reserved.

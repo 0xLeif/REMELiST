@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		291E9F90245CD023001DE464 /* ListItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemData.swift; sourceTree = "<group>"; };
 		291E9F93245CD05F001DE464 /* ListItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemCell.swift; sourceTree = "<group>"; };
-		292F61D52454B6DC00CABDDC /* LisIT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LisIT.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		292F61D52454B6DC00CABDDC /* REMELiST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMELiST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		292F61D82454B6DC00CABDDC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		292F61DA2454B6DC00CABDDC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		292F61DC2454B6DC00CABDDC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		292F61CC2454B6DC00CABDDC = {
 			isa = PBXGroup;
 			children = (
-				292F61D72454B6DC00CABDDC /* LisIT */,
+				292F61D72454B6DC00CABDDC /* REMELiST */,
 				292F61D62454B6DC00CABDDC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,12 +107,12 @@
 		292F61D62454B6DC00CABDDC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				292F61D52454B6DC00CABDDC /* LisIT.app */,
+				292F61D52454B6DC00CABDDC /* REMELiST.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		292F61D72454B6DC00CABDDC /* LisIT */ = {
+		292F61D72454B6DC00CABDDC /* REMELiST */ = {
 			isa = PBXGroup;
 			children = (
 				292F61DC2454B6DC00CABDDC /* ViewController.swift */,
@@ -122,15 +122,15 @@
 				291E9F96245CD1DC001DE464 /* Resources */,
 				291E9F95245CD17C001DE464 /* Delegates */,
 			);
-			path = LisIT;
+			path = REMELiST;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		292F61D42454B6DC00CABDDC /* LisIT */ = {
+		292F61D42454B6DC00CABDDC /* REMELiST */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 292F61E92454B6DF00CABDDC /* Build configuration list for PBXNativeTarget "LisIT" */;
+			buildConfigurationList = 292F61E92454B6DF00CABDDC /* Build configuration list for PBXNativeTarget "REMELiST" */;
 			buildPhases = (
 				292F61D12454B6DC00CABDDC /* Sources */,
 				292F61D22454B6DC00CABDDC /* Frameworks */,
@@ -140,14 +140,14 @@
 			);
 			dependencies = (
 			);
-			name = LisIT;
+			name = REMELiST;
 			packageProductDependencies = (
 				292F61ED2454B73B00CABDDC /* SwiftUIKit */,
 				299AE7C5245E034100C62E83 /* FLite */,
 				299AE7EC245F360100C62E83 /* EKit */,
 			);
 			productName = LisIT;
-			productReference = 292F61D52454B6DC00CABDDC /* LisIT.app */;
+			productReference = 292F61D52454B6DC00CABDDC /* REMELiST.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -165,7 +165,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 292F61D02454B6DC00CABDDC /* Build configuration list for PBXProject "LisIT" */;
+			buildConfigurationList = 292F61D02454B6DC00CABDDC /* Build configuration list for PBXProject "REMELiST" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,7 +183,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				292F61D42454B6DC00CABDDC /* LisIT */,
+				292F61D42454B6DC00CABDDC /* REMELiST */,
 			);
 		};
 /* End PBXProject section */
@@ -358,7 +358,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8SAX62V2;
-				INFOPLIST_FILE = LisIT/Resources/Info.plist;
+				INFOPLIST_FILE = REMELiST/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -376,7 +376,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8M8SAX62V2;
-				INFOPLIST_FILE = LisIT/Resources/Info.plist;
+				INFOPLIST_FILE = REMELiST/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -391,7 +391,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		292F61D02454B6DC00CABDDC /* Build configuration list for PBXProject "LisIT" */ = {
+		292F61D02454B6DC00CABDDC /* Build configuration list for PBXProject "REMELiST" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				292F61E72454B6DF00CABDDC /* Debug */,
@@ -400,7 +400,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		292F61E92454B6DF00CABDDC /* Build configuration list for PBXNativeTarget "LisIT" */ = {
+		292F61E92454B6DF00CABDDC /* Build configuration list for PBXNativeTarget "REMELiST" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				292F61EA2454B6DF00CABDDC /* Debug */,
@@ -432,7 +432,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/0xLeif/EKit";
 			requirement = {
-				branch = "test-image";
+				branch = develop;
 				kind = branch;
 			};
 		};
