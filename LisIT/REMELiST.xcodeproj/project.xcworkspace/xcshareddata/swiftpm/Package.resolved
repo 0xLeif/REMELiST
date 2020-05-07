@@ -32,8 +32,8 @@
         "package": "EKit",
         "repositoryURL": "https://github.com/0xLeif/EKit",
         "state": {
-          "branch": "develop",
-          "revision": "14c87423549be0fafee62fb88561dc7d236cba0d",
+          "branch": "test-image",
+          "revision": "04a6ff106a8489bc1e0e5af2f69a71d5e983a2ad",
           "version": null
         }
       },
