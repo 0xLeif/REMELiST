@@ -25,6 +25,8 @@ extension ListItemCell: TableViewCell {
                 ]
             }
         }
+        
+        selectionStyle = .none
     }
     
     func update(forData data: CellDisplayable) {

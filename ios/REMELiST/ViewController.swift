@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     private var newTableData: [[ListItemData]] {
         data
             .map { ($0.section, $0) }
-            .reduce([String: [ListItemData]]()) { (dictionary: [String: [ListItemData]], keyValueTuple: (String?, ListItemData)) -> [String : [ListItemData]] in
+            .reduce([String: [ListItemData]]()) { (dictionary: [String: [ListItemData]], keyValueTuple: (String?, ListItemData)) -> [String: [ListItemData]] in
                 var reduceDictionary = dictionary
                 
                 guard var array = reduceDictionary[keyValueTuple.0 ?? ""] else {
@@ -69,9 +69,11 @@ class ViewController: UIViewController {
         Navigate.shared.configure(controller: navigationController)
             .setRight(barButton: BarButton {
                 Button(E.plus_sign.rawValue) {
-                    Navigate.shared.go(AddViewController(addItemHandler: { (newItem) in
-                        FLite.create(model: newItem)
-                        self.data.append(newItem)
+                    Navigate.shared.go(AddViewController(addItemHandler: { [weak self] (newItem) in
+                        FLite.create(model: newItem).do { (newItem) in
+                            self?.data.append(newItem)
+                        }
+                        .catch { print($0.localizedDescription) }
                     }), style: .modal)
                 }
             })

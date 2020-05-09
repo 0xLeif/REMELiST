@@ -20,6 +20,7 @@
 		296B714C245A74A6008F26FA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296B714B245A74A6008F26FA /* DetailViewController.swift */; };
 		299AE7C6245E034100C62E83 /* FLite in Frameworks */ = {isa = PBXBuildFile; productRef = 299AE7C5245E034100C62E83 /* FLite */; };
 		299AE7ED245F360100C62E83 /* EKit in Frameworks */ = {isa = PBXBuildFile; productRef = 299AE7EC245F360100C62E83 /* EKit */; };
+		29FE73CD2467128E00BBDA18 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE73CC2467128E00BBDA18 /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		292F61E62454B6DF00CABDDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		296B7149245A5856008F26FA /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		296B714B245A74A6008F26FA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		29FE73CC2467128E00BBDA18 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				296B7149245A5856008F26FA /* AddViewController.swift */,
 				296B714B245A74A6008F26FA /* DetailViewController.swift */,
+				29FE73CC2467128E00BBDA18 /* EditViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29FE73CD2467128E00BBDA18 /* EditViewController.swift in Sources */,
 				292F61DD2454B6DC00CABDDC /* ViewController.swift in Sources */,
 				291E9F94245CD05F001DE464 /* ListItemCell.swift in Sources */,
 				292F61D92454B6DC00CABDDC /* AppDelegate.swift in Sources */,
