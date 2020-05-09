@@ -43,8 +43,10 @@ class ViewController: UIViewController {
                 
                 return reduceDictionary
         }
-        .values
-        .map { $0 }
+        .sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.key < rhs.key
+        })
+            .map { $0.value }
         
         
     }
@@ -71,7 +73,9 @@ class ViewController: UIViewController {
                 Button(E.plus_sign.rawValue) {
                     Navigate.shared.go(AddViewController(addItemHandler: { [weak self] (newItem) in
                         FLite.create(model: newItem).do { (newItem) in
-                            self?.data.append(newItem)
+                            DispatchQueue.main.async {
+                                self?.data.append(newItem)
+                            }
                         }
                         .catch { print($0.localizedDescription) }
                     }), style: .modal)
@@ -92,11 +96,12 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = currentTableData[indexPath.section][indexPath.row]
         
-        Navigate.shared.go(DetailViewController(item: data) { data  in
-                self.currentTableData[indexPath.section][indexPath.row] = data
-                
-            DispatchQueue.main.async {
-                self.table.reloadData()
+        Navigate.shared.go(DetailViewController(item: data) { [weak self] data  in
+            self?.currentTableData[indexPath.section][indexPath.row] = data
+            FLite.fetchAll(model: ListItemData.self) { (listItems) in
+                DispatchQueue.main.async {
+                    self?.data = listItems
+                }
             }
         }, style: .push)
     }
