@@ -11,9 +11,9 @@ import SwiftUIKit
 import FLite
 import EKit
 
+var globalStyle = Style()
 class ViewController: UIViewController {
     // MARK: Data
-    
     private(set) var currentTableData: [[ListItemData]] = []
     private var data: [ListItemData] = [] {
         didSet {
@@ -53,22 +53,17 @@ class ViewController: UIViewController {
     
     // MARK: Views
     
-    private var table = TableView()
+    private var table = TableView().configure { $0.separatorStyle = .none }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FLite.storage = .file(path: "\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path ?? "")/default.sqlite")
-        
-        FLite.prepare(model: ListItemData.self)
-        
-        FLite.fetchAll(model: ListItemData.self) { (listItems) in
-            DispatchQueue.main.async {
-                self.data += listItems
-            }
-        }
-        
         Navigate.shared.configure(controller: navigationController)
+            .setLeft(barButton: BarButton {
+                Button(E.gear.rawValue) {
+                    Navigate.shared.go(CellCustomizeViewController(), style: .push)
+                }
+            })
             .setRight(barButton: BarButton {
                 Button(E.plus_sign.rawValue) {
                     Navigate.shared.go(AddViewController(addItemHandler: { [weak self] (newItem) in
@@ -89,6 +84,14 @@ class ViewController: UIViewController {
         view.embed {
             table
         }
+        
+        fetchData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.table.reloadData()
     }
 }
 
@@ -104,5 +107,15 @@ extension ViewController: UITableViewDelegate {
                 }
             }
         }, style: .push)
+    }
+}
+
+extension ViewController {
+    fileprivate func fetchData() {
+        FLite.fetchAll(model: ListItemData.self) { (listItems) in
+            DispatchQueue.main.async {
+                self.data += listItems
+            }
+        }
     }
 }

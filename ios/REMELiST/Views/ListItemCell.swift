@@ -12,18 +12,21 @@ import SwiftUIKit
 class ListItemCell: UITableViewCell {
     let title = Label.title1("")
     let notes = Label.body("")
+    lazy var styleView = StyleView(style: globalStyle) {
+        VStack(withSpacing: 4) {
+            [
+                self.title,
+                self.notes
+                    .number(ofLines: 5)
+            ]
+        }
+    }
 }
 
 extension ListItemCell: TableViewCell {
     func configure(forData data: CellDisplayable) {
         contentView.clear().embed {
-            VStack(withSpacing: 4) {
-                [
-                    title,
-                    notes
-                        .number(ofLines: 5)
-                ]
-            }
+            styleView
         }
         
         selectionStyle = .none
@@ -36,6 +39,11 @@ extension ListItemCell: TableViewCell {
         
         title.text = data.title
         notes.text = data.notes
+        styleView.apply(style: globalStyle)
+        
+        UIView.animate(withDuration: 2) {
+            self.styleView.layoutIfNeeded()
+        }
     }
     
     static var ID: String {

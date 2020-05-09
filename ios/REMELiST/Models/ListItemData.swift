@@ -31,6 +31,7 @@ extension ListItemData: CellDisplayable {
         ListItemCell.ID
     }
 }
+
 extension ListItemData {
     func configure(closure: (ListItemData) -> Void) -> ListItemData {
         closure(self)
@@ -38,18 +39,22 @@ extension ListItemData {
         return self
     }
 }
+
 extension ListItemData {
+    convenience init(item: ListItemData) {
+        self.init()
+        id = item.id
+        lastEdited = item.lastEdited
+        section = item.section
+        title = item.title
+        notes = item.notes
+        linkURLS = item.linkURLS
+        imageURLS = item.imageURLS
+        tags = item.tags
+        date = item.date
+    }
+    
     var copy: ListItemData {
-        ListItemData().configure { (copy) in
-            copy.id = id
-            copy.lastEdited = lastEdited
-            copy.section = section
-            copy.title = title
-            copy.notes = notes
-            copy.linkURLS = linkURLS
-            copy.imageURLS = imageURLS
-            copy.tags = tags
-            copy.date = date
-        }
+        ListItemData(item: self)
     }
 }

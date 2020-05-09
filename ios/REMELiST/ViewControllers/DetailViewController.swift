@@ -9,6 +9,7 @@
 import UIKit
 import SwiftUIKit
 import FLite
+import EKit
 
 class DetailViewController: UIViewController {
     public var updateItemHandler: (ListItemData) -> Void
@@ -31,7 +32,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         Navigate.shared.setRight(barButton: BarButton {
-            Button("Edit") {
+            Button(E.pencil.rawValue) {
                 Navigate.shared.go(EditViewController(item: self.item) { [weak self] edittedItem in
                     self?.item = edittedItem
                     DispatchQueue.main.async {
