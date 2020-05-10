@@ -103,19 +103,19 @@ class AddViewController: UIViewController {
         
         view.background(color: .white)
             .embed {
-//                ScrollView {
-                    self.stackContainer
-//                        .frame(width: Float(self.view.bounds.width))
-//                }
+                //                ScrollView {
+                self.stackContainer
+                //                        .frame(width: Float(self.view.bounds.width))
+                //                }
         }
     }
     
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransition(to: size, with: coordinator)
-//
-//        coordinator.animate(alongsideTransition: nil) { _ in
-//            self.stackContainer.update(width: Float(self.view.bounds.width))
-//        }
-//    }
+    //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    //        super.viewWillTransition(to: size, with: coordinator)
+    //
+    //        coordinator.animate(alongsideTransition: nil) { _ in
+    //            self.stackContainer.update(width: Float(self.view.bounds.width))
+    //        }
+    //    }
     
 }

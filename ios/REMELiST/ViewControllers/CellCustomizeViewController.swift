@@ -13,35 +13,31 @@ class CellCustomizeViewController: UIViewController {
     private lazy var settingsTable = Table {
         [
             Label.headline("Margin"),
-                       Slider(value: 0.5, from: 0, to: 32) { [weak self] value in
-                           globalStyle.margin = value
-                           self?.styledView.apply(style: globalStyle)
-                       }
-                       .configure { $0.value = globalStyle.margin }
-                       .padding(4),
-                       
+            Slider(value: globalStyle.margin, from: 0, to: 32) { [weak self] value in
+                globalStyle.margin = value
+                self?.styledView.apply(style: globalStyle)
+            }
+            .padding(4),
+            
             Label.headline("Padding"),
-            Slider(value: 0.5, from: 0, to: 32) { [weak self] value in
+            Slider(value: globalStyle.padding, from: 0, to: 32) { [weak self] value in
                 globalStyle.padding = value
                 self?.styledView.apply(style: globalStyle)
             }
-            .configure { $0.value = globalStyle.padding }
             .padding(4),
             
             Label.headline("Border width"),
-            Slider(value: 0.5, from: 0, to: 12) { [weak self] value in
+            Slider(value: globalStyle.borderWidth, from: 0, to: 12) { [weak self] value in
                 globalStyle.borderWidth = value
                 self?.styledView.apply(style: globalStyle)
             }
-            .configure { $0.value = globalStyle.borderWidth }
             .padding(4),
             
             Label.headline("Corner Radius"),
-            Slider(value: 0.5, from: 0, to: 16) { [weak self] value in
+            Slider(value: globalStyle.cornerRadius, from: 0, to: 16) { [weak self] value in
                 globalStyle.cornerRadius = value
                 self?.styledView.apply(style: globalStyle)
             }
-            .configure { $0.value = globalStyle.cornerRadius }
             .padding(4)
         ]
     }
@@ -55,14 +51,13 @@ class CellCustomizeViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        globalStyle.marginBackgroundColor = .brown
-        globalStyle.textColor = .white
-        globalStyle.borderColor = .white
-        globalStyle.backgroundColor = .brown
+        globalStyle.marginBackgroundColor = .white
+        globalStyle.textColor = .black
+        globalStyle.borderColor = .black
+        globalStyle.backgroundColor = .white
         
         draw()
     }

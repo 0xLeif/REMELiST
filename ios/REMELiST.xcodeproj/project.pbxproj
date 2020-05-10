@@ -20,7 +20,7 @@
 		296B714C245A74A6008F26FA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296B714B245A74A6008F26FA /* DetailViewController.swift */; };
 		297CF9BF24674BDA000B12A3 /* StyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297CF9BE24674BDA000B12A3 /* StyleView.swift */; };
 		297CF9C124675397000B12A3 /* CellCustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297CF9C024675397000B12A3 /* CellCustomizeViewController.swift */; };
-		297CF9C3246761E4000B12A3 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297CF9C2246761E4000B12A3 /* Style.swift */; };
+		297CF9C3246761E4000B12A3 /* SUIKStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297CF9C2246761E4000B12A3 /* SUIKStyle.swift */; };
 		299AE7C6245E034100C62E83 /* FLite in Frameworks */ = {isa = PBXBuildFile; productRef = 299AE7C5245E034100C62E83 /* FLite */; };
 		299AE7ED245F360100C62E83 /* EKit in Frameworks */ = {isa = PBXBuildFile; productRef = 299AE7EC245F360100C62E83 /* EKit */; };
 		29FE73CD2467128E00BBDA18 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE73CC2467128E00BBDA18 /* EditViewController.swift */; };
@@ -41,7 +41,7 @@
 		296B714B245A74A6008F26FA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		297CF9BE24674BDA000B12A3 /* StyleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleView.swift; sourceTree = "<group>"; };
 		297CF9C024675397000B12A3 /* CellCustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCustomizeViewController.swift; sourceTree = "<group>"; };
-		297CF9C2246761E4000B12A3 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		297CF9C2246761E4000B12A3 /* SUIKStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUIKStyle.swift; sourceTree = "<group>"; };
 		29FE73CC2467128E00BBDA18 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				291E9F90245CD023001DE464 /* ListItemData.swift */,
-				297CF9C2246761E4000B12A3 /* Style.swift */,
+				297CF9C2246761E4000B12A3 /* SUIKStyle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 				296B714C245A74A6008F26FA /* DetailViewController.swift in Sources */,
 				296B714A245A5856008F26FA /* AddViewController.swift in Sources */,
 				292F61DB2454B6DC00CABDDC /* SceneDelegate.swift in Sources */,
-				297CF9C3246761E4000B12A3 /* Style.swift in Sources */,
+				297CF9C3246761E4000B12A3 /* SUIKStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,8 +432,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/0xLeif/SwiftUIKit";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
+				branch = feature/UpdatePadding;
+				kind = branch;
 			};
 		};
 		299AE7C4245E034100C62E83 /* XCRemoteSwiftPackageReference "FLite" */ = {
