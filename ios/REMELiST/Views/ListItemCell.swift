@@ -39,11 +39,12 @@ extension ListItemCell: TableViewCell {
         
         title.text = data.title
         notes.text = data.notes
-        styleView.apply(style: globalStyle)
         
-        UIView.animate(withDuration: 2) {
-            self.styleView.layoutIfNeeded()
-        }
+        UIView.animate(withDuration: 0.314,
+                       delay: 0,
+                       options: [.curveEaseInOut],
+                       animations: { self.styleView.apply(style: globalStyle) },
+                       completion: nil)
     }
     
     static var ID: String {

@@ -11,7 +11,7 @@ import SwiftUIKit
 import FLite
 import EKit
 
-var globalStyle = Style()
+var globalStyle = SUIKStyle()
 class ViewController: UIViewController {
     // MARK: Data
     private(set) var currentTableData: [[ListItemData]] = []
@@ -47,8 +47,6 @@ class ViewController: UIViewController {
             return lhs.key < rhs.key
         })
             .map { $0.value }
-        
-        
     }
     
     // MARK: Views

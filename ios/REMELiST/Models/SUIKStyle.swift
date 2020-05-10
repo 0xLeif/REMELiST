@@ -1,5 +1,5 @@
 //
-//  Style.swift
+//  SUIKStyle.swift
 //  REMELiST
 //
 //  Created by Zach Eriksen on 5/9/20.
@@ -9,10 +9,10 @@
 import UIKit
 
 protocol Styleable {
-    func apply(style: Style)
+    func apply(style: SUIKStyle)
 }
 
-class Style {
+struct SUIKStyle {
     // Number Values
     var margin: Float = 0
     var padding: Float = 0
@@ -30,7 +30,7 @@ class Style {
 }
 
 extension UILabel: Styleable {
-    func apply(style: Style) {
+    func apply(style: SUIKStyle) {
         textColor = style.textColor
     }
 }
