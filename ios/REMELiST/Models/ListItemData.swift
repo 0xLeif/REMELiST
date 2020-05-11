@@ -31,3 +31,30 @@ extension ListItemData: CellDisplayable {
         ListItemCell.ID
     }
 }
+
+extension ListItemData {
+    func configure(closure: (ListItemData) -> Void) -> ListItemData {
+        closure(self)
+        
+        return self
+    }
+}
+
+extension ListItemData {
+    convenience init(item: ListItemData) {
+        self.init()
+        id = item.id
+        lastEdited = item.lastEdited
+        section = item.section
+        title = item.title
+        notes = item.notes
+        linkURLS = item.linkURLS
+        imageURLS = item.imageURLS
+        tags = item.tags
+        date = item.date
+    }
+    
+    var copy: ListItemData {
+        ListItemData(item: self)
+    }
+}

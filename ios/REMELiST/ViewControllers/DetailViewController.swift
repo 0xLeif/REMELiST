@@ -9,13 +9,13 @@
 import UIKit
 import SwiftUIKit
 import FLite
+import EKit
 
 class DetailViewController: UIViewController {
     public var updateItemHandler: (ListItemData) -> Void
+    public var item: ListItemData
     
-    var item: ListItemData
-    
-    private var stackContainer = UIView(backgroundColor: .systemGray6).layer(cornerRadius: 4)
+    private var stackContainer = UIView().layer(cornerRadius: 4)
     
     init(item: ListItemData, updateItemHandler: @escaping (ListItemData) -> Void) {
         self.item = item
@@ -31,16 +31,39 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FLite.connection.do { (connection) in
-            self.item.notes = "👋🧙🏻‍♂️"
-            
-            self.item.update(on: connection)
-            print("Updated")
-            
-            self.updateItemHandler(self.item)
-        }
+        Navigate.shared.setRight(barButton: BarButton {
+            Button(E.pencil.rawValue) {
+                Navigate.shared.go(EditViewController(item: self.item) { [weak self] edittedItem in
+                    self?.item = edittedItem
+                    DispatchQueue.main.async {
+                        self?.draw()
+                    }
+                    FLite.connection.do { (connection) in
+                        self?.item.update(on: connection).do { (item) in
+                            self?.updateItemHandler(item)
+                        }
+                        .catch { print($0.localizedDescription) }
+                    }
+                    .catch { print($0.localizedDescription) }
+                }, style: .modal)
+            }
+        })
         
-        stackContainer.embed {
+        
+        
+        draw()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: nil) { _ in
+            self.stackContainer.update(width: Float(self.view.bounds.width))
+        }
+    }
+    
+    private func draw() {
+        stackContainer.clear().embed {
             SafeAreaView {
                 VStack {
                     [
@@ -53,22 +76,13 @@ class DetailViewController: UIViewController {
             }
         }
         
-        view
+        view.clear()
             .background(color: .white)
             .embed {
                 ScrollView {
                     self.stackContainer
                         .frame(width: Float(self.view.bounds.width))
                 }
-        }
-        
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        
-        coordinator.animate(alongsideTransition: nil) { _ in
-            self.stackContainer.update(width: Float(self.view.bounds.width))
         }
     }
 }

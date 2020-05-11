@@ -113,9 +113,9 @@
         "package": "SwiftUIKit",
         "repositoryURL": "https://github.com/0xLeif/SwiftUIKit",
         "state": {
-          "branch": null,
-          "revision": "8e4945e5d05ff61215917511fd2a523f94c0fd69",
-          "version": "1.1.0"
+          "branch": "feature/UpdatePadding",
+          "revision": "6dfc77d2013e5cc137b3a61ddc30c97fcd47740a",
+          "version": null
         }
       }
     ]

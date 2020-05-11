@@ -11,9 +11,9 @@ import SwiftUIKit
 import FLite
 import EKit
 
+var globalStyle = SUIKStyle()
 class ViewController: UIViewController {
     // MARK: Data
-    
     private(set) var currentTableData: [[ListItemData]] = []
     private var data: [ListItemData] = [] {
         didSet {
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     private var newTableData: [[ListItemData]] {
         data
             .map { ($0.section, $0) }
-            .reduce([String: [ListItemData]]()) { (dictionary: [String: [ListItemData]], keyValueTuple: (String?, ListItemData)) -> [String : [ListItemData]] in
+            .reduce([String: [ListItemData]]()) { (dictionary: [String: [ListItemData]], keyValueTuple: (String?, ListItemData)) -> [String: [ListItemData]] in
                 var reduceDictionary = dictionary
                 
                 guard var array = reduceDictionary[keyValueTuple.0 ?? ""] else {
@@ -43,35 +43,34 @@ class ViewController: UIViewController {
                 
                 return reduceDictionary
         }
-        .values
-        .map { $0 }
-        
-        
+        .sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.key < rhs.key
+        })
+            .map { $0.value }
     }
     
     // MARK: Views
     
-    private var table = TableView()
+    private var table = TableView().configure { $0.separatorStyle = .none }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FLite.storage = .file(path: "\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.path ?? "")/default.sqlite")
-        
-        FLite.prepare(model: ListItemData.self)
-        
-        FLite.fetchAll(model: ListItemData.self) { (listItems) in
-            DispatchQueue.main.async {
-                self.data += listItems
-            }
-        }
-        
         Navigate.shared.configure(controller: navigationController)
+            .setLeft(barButton: BarButton {
+                Button(E.gear.rawValue) {
+                    Navigate.shared.go(CellCustomizeViewController(), style: .push)
+                }
+            })
             .setRight(barButton: BarButton {
                 Button(E.plus_sign.rawValue) {
-                    Navigate.shared.go(AddViewController(addItemHandler: { (newItem) in
-                        FLite.create(model: newItem)
-                        self.data.append(newItem)
+                    Navigate.shared.go(AddViewController(addItemHandler: { [weak self] (newItem) in
+                        FLite.create(model: newItem).do { (newItem) in
+                            DispatchQueue.main.async {
+                                self?.data.append(newItem)
+                            }
+                        }
+                        .catch { print($0.localizedDescription) }
                     }), style: .modal)
                 }
             })
@@ -83,6 +82,14 @@ class ViewController: UIViewController {
         view.embed {
             table
         }
+        
+        fetchData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.table.reloadData()
     }
 }
 
@@ -90,12 +97,23 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = currentTableData[indexPath.section][indexPath.row]
         
-        Navigate.shared.go(DetailViewController(item: data) { data  in
-                self.currentTableData[indexPath.section][indexPath.row] = data
-                
-            DispatchQueue.main.async {
-                self.table.reloadData()
+        Navigate.shared.go(DetailViewController(item: data) { [weak self] data  in
+            self?.currentTableData[indexPath.section][indexPath.row] = data
+            FLite.fetchAll(model: ListItemData.self) { (listItems) in
+                DispatchQueue.main.async {
+                    self?.data = listItems
+                }
             }
         }, style: .push)
+    }
+}
+
+extension ViewController {
+    fileprivate func fetchData() {
+        FLite.fetchAll(model: ListItemData.self) { (listItems) in
+            DispatchQueue.main.async {
+                self.data += listItems
+            }
+        }
     }
 }

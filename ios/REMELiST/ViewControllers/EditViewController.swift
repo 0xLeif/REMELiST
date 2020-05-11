@@ -1,23 +1,24 @@
 //
-//  AddViewController.swift
+//  EditViewController.swift
 //  REMELiST
 //
-//  Created by Zach Eriksen on 4/29/20.
+//  Created by Zach Eriksen on 5/9/20.
 //  Copyright © 2020 oneleif. All rights reserved.
 //
 
 import UIKit
 import SwiftUIKit
 
-class AddViewController: UIViewController {
-    public var addItemHandler: (ListItemData) -> Void
+class EditViewController: UIViewController {
+    public var editItemHandler: (ListItemData) -> Void
     
-    private var listItem = ListItemData()
+    private var listItem: ListItemData
     
     private var stackContainer = UIView(backgroundColor: .systemGray6).layer(cornerRadius: 4)
     
-    init(addItemHandler: @escaping (ListItemData) -> Void) {
-        self.addItemHandler = addItemHandler
+    init(item: ListItemData, editItemHandler: @escaping (ListItemData) -> Void) {
+        self.listItem = item.copy
+        self.editItemHandler = editItemHandler
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,10 +36,10 @@ class AddViewController: UIViewController {
                         HStack {
                             [
                                 Button("Cancel") {
-                                    Navigate.shared.back()
+                                    Navigate.shared.dismiss()
                                 },
                                 Spacer(),
-                                Button("Add") { [weak self] in
+                                Button("Save") { [weak self] in
                                     guard let self = self else {
                                         return
                                     }
@@ -50,8 +51,8 @@ class AddViewController: UIViewController {
                                         return
                                     }
                                     
-                                    self.addItemHandler(self.listItem)
-                                    Navigate.shared.back()
+                                    self.editItemHandler(self.listItem)
+                                    Navigate.shared.dismiss()
                                 }
                             ]
                         },
@@ -59,17 +60,17 @@ class AddViewController: UIViewController {
                         VStack(withSpacing: 4) {
                             [
                                 Label("Title"),
-                                Field(value: "", placeholder: "Title", keyboardType: .default)
+                                Field(value: self.listItem.title, placeholder: "Title", keyboardType: .default)
                                     .configure { $0.borderStyle = .roundedRect }
-                                    .inputHandler { self.listItem.title = $0 }
+                                    .inputHandler { [weak self] in self?.listItem.title = $0 }
                             ]
                         },
                         
                         VStack(withSpacing: 4) {
                             [
                                 Label("Notes"),
-                                MultiLineField(value: "", keyboardType: .default)
-                                    .inputHandler {  self.listItem.notes = $0 }
+                                MultiLineField(value: self.listItem.notes, keyboardType: .default)
+                                    .inputHandler { [weak self] in self?.listItem.notes = $0 }
                                     .layer(cornerRadius: 4)
                                     .layer(borderColor: .systemGray4)
                                     .layer(borderWidth: 1)
@@ -80,18 +81,18 @@ class AddViewController: UIViewController {
                         VStack(withSpacing: 4) {
                             [
                                 Label("Section"),
-                                Field(value: "", placeholder: "Work", keyboardType: .default)
+                                Field(value: self.listItem.section ?? "", placeholder: "Work", keyboardType: .default)
                                     .configure { $0.borderStyle = .roundedRect }
-                                    .inputHandler { self.listItem.section = $0 }
+                                    .inputHandler { [weak self] in self?.listItem.section = $0 }
                             ]
                         },
                         
                         VStack(withSpacing: 4) {
                             [
                                 Label("Tags (Seperate tags with a comma)"),
-                                Field(value: "", placeholder: "Swift, iOS, SUIK", keyboardType: .default)
+                                Field(value: self.listItem.tags.joined(separator: ", "), placeholder: "Swift, iOS, SUIK", keyboardType: .default)
                                     .configure { $0.borderStyle = .roundedRect }
-                                    .inputHandler { self.listItem.tags = $0.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: ",").map(String.init) }
+                                    .inputHandler { [weak self] in self?.listItem.tags = $0.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: ",").map(String.init) }
                             ]
                         },
                         
@@ -102,20 +103,7 @@ class AddViewController: UIViewController {
         }
         
         view.background(color: .white)
-            .embed {
-                //                ScrollView {
-                self.stackContainer
-                //                        .frame(width: Float(self.view.bounds.width))
-                //                }
-        }
+            .embed { self.stackContainer }
     }
-    
-    //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-    //        super.viewWillTransition(to: size, with: coordinator)
-    //
-    //        coordinator.animate(alongsideTransition: nil) { _ in
-    //            self.stackContainer.update(width: Float(self.view.bounds.width))
-    //        }
-    //    }
     
 }
