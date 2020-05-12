@@ -34,3 +34,37 @@ extension UILabel: Styleable {
         textColor = style.textColor
     }
 }
+
+extension UIColor {
+    var red: CGFloat {
+        var r: CGFloat = 0
+        
+        getRed(&r, green: nil, blue: nil, alpha: nil)
+        
+        return r
+    }
+    
+    var green: CGFloat {
+        var g: CGFloat = 0
+        
+        getRed(nil, green: &g, blue: nil, alpha: nil)
+        
+        return g
+    }
+    
+    var blue: CGFloat {
+        var b: CGFloat = 0
+        
+        getRed(nil, green: nil, blue: &b, alpha: nil)
+        
+        return b
+    }
+    
+    var alpha: CGFloat {
+        var a: CGFloat = 0
+        
+        getRed(nil, green: nil, blue: nil, alpha: &a)
+        
+        return a
+    }
+}
